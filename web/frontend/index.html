@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Ensures that the UI is properly scaled in the Shopify Mobile app -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <!-- jQuery CDN (Required before DataTables JS) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Shopify API Key (Ensure the value is correct) -->
+    <meta name="shopify-api-key" content="%VITE_SHOPIFY_API_KEY%" />
+
+    <!-- Shopify App Bridge -->
+    <script src="https://cdn.shopify.com/shopifycloud/app-bridge.js"></script>
+
+    <script type="module">
+      if (!import.meta.env || !import.meta.env.PROD) {
+        // For HMR (Hot Module Replacement) support when using Vite
+        const script = document.createElement('script');
+        script.setAttribute('type', "module");
+        script.setAttribute('src', "./dev_embed.js");
+        document.getElementsByTagName('head')[0].append(script);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="app"><!--index.jsx injects App.jsx here--></div>
+    
+    <!-- Your main JavaScript file (index.jsx) -->
+    <script type="module" src="/index.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "00b14ae969eb2f9ee24e06d6447ce057"
+application_url = "https://oecd-tn-critical-prohibited.trycloudflare.com"
+embedded = true
+name = "temu_app"
+handle = "temu_app"
+
+[build]
+include_config_on_deploy = true
+dev_store_url = "paymenttest-store.myshopify.com"
+
+[webhooks]
+api_version = "2024-10"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = ""
+
+[auth]
+redirect_urls = [
+  "https://oecd-tn-critical-prohibited.trycloudflare.com/auth/callback",
+  "https://oecd-tn-critical-prohibited.trycloudflare.com/auth/shopify/callback",
+  "https://oecd-tn-critical-prohibited.trycloudflare.com/api/auth/callback"
+]
+
+[pos]
+embedded = false

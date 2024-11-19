@@ -1,0 +1,29 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "dd319a37822098de737643cd7db23de3"
+name = "Temu"
+handle = "temu-4"
+application_url = "https://nations-bingo-ham-et.trycloudflare.com"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+dev_store_url = "affan-test.myshopify.com"
+automatically_update_urls_on_dev = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://nations-bingo-ham-et.trycloudflare.com/auth/callback",
+  "https://nations-bingo-ham-et.trycloudflare.com/auth/shopify/callback",
+  "https://nations-bingo-ham-et.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-10"
+
+[pos]
+embedded = false
