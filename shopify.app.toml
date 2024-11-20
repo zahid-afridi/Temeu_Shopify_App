@@ -3,7 +3,7 @@
 client_id = "dd319a37822098de737643cd7db23de3"
 name = "Temu"
 handle = "temu-4"
-application_url = "https://nations-bingo-ham-et.trycloudflare.com"
+application_url = "https://hollow-ho-ci-consolidated.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://nations-bingo-ham-et.trycloudflare.com/auth/callback",
-  "https://nations-bingo-ham-et.trycloudflare.com/auth/shopify/callback",
-  "https://nations-bingo-ham-et.trycloudflare.com/api/auth/callback"
+  "https://hollow-ho-ci-consolidated.trycloudflare.com/auth/callback",
+  "https://hollow-ho-ci-consolidated.trycloudflare.com/auth/shopify/callback",
+  "https://hollow-ho-ci-consolidated.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
