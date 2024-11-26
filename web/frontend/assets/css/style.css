@@ -270,5 +270,28 @@ table.dataTable.no-footer{
   border-bottom: 1px solid #00000000;
 }
 
-table.dataTable.display tbody tr>.sorting_1{
+.modal-header{
+display: none !important;
+}
+
+.product-img{
+  overflow-y: scroll;
+  height: 80vh;
+}
+
+.product-img::-webkit-scrollbar {
+  width: 0px;
+}
+
+.product-detail h1{
+  font-size: 20px;
+}
+
+.modalbody{
+  height: 70vh;
+  overflow: hidden;
+}
+
+.modalcontainer{
+  height: 100%;
 }

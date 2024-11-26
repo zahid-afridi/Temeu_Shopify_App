@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../assets/css/style.css";
 import Table from "react-bootstrap/Table";
 import tableimg from "../../assets/img/tableimg.jpg";
 import { CiEdit } from "react-icons/ci";
 import { ImBin2 } from "react-icons/im";
 import { FaRegEye } from "react-icons/fa";
+import Modal from "./modal.jsx";
+import { Button } from "react-bootstrap";
 
 const DataTableComponent = () => {
+
+ const [show, setShow] = useState(false)
   useEffect(() => {
     // Initialize DataTable after the component is mounted
     const table = $("#myTable").DataTable();
@@ -19,6 +23,8 @@ const DataTableComponent = () => {
 
   return (
     <>
+    <Modal show={show} onClose={() => setShow (false)}/>
+
       <Table id="myTable" className="display w-100">
         <thead>
           <tr>
@@ -67,9 +73,9 @@ const DataTableComponent = () => {
                 <button className="btn ml-2 delete">
                   <ImBin2 />
                 </button>
-                <button className="btn ml-2 view">
+                <Button className="btn ml-2 view bg-white border-0" variant="primary" onClick={() => setShow(true)}>
                   <FaRegEye />
-                </button>
+                </Button>
               </div>
             </td>
           </tr>
