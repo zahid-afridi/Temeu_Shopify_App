@@ -45,6 +45,7 @@ export const Importer_Product = async (req, res) => {
           image_url: item.images || [],
           shop_id: Shop_id,
           itme_Id: item.itemId,
+          product_url:item.itemUrl || 'No URL available',  // Added fallback for product URL
           mainImage: item.images[0] || 'No image available',  // Added fallback for main image
         });
 

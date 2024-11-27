@@ -252,7 +252,16 @@ tbody td {
 }
 
 .edit svg {
-  color:#00ff00;
+  color:#27e827;
+  font-size: 1.3rem;
+}
+.edit{
+  animation: none;
+  cursor: no-drop;
+}
+.edit p{
+  font-size: 0.8rem;
+ cursor: no-drop;
 }
 
 .delete svg{

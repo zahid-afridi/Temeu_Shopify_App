@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../../assets/css/style.css";
 import Table from "react-bootstrap/Table";
 import tableimg from "../../assets/img/tableimg.jpg";
-import { CiEdit } from "react-icons/ci";
 import { ImBin2 } from "react-icons/im";
 import { FaRegEye } from "react-icons/fa";
+import { MdOutlineUploadFile } from "react-icons/md";
 import Modal from "./modal.jsx";
 import { Button } from "react-bootstrap";
 
@@ -19,7 +19,7 @@ const DataTableComponent = () => {
     return () => {
       table.destroy();
     };
-  }, []); // Empty dependency array ensures this runs once after initial render
+  }, []); // Empty dependency arra  y ensures this runs once after initial render
 
   return (
     <>
@@ -46,7 +46,8 @@ const DataTableComponent = () => {
             <td className="tableaction">
               <div className="d-flex justify-content-evenly">
                 <button className="btn edit">
-                  <CiEdit />
+                <MdOutlineUploadFile />
+
                 </button>
                 <button className="btn ml-2 delete">
                   <ImBin2 />
@@ -68,7 +69,8 @@ const DataTableComponent = () => {
             <td className="tableaction">
               <div className="d-flex justify-content-evenly">
                 <button className="btn edit">
-                  <CiEdit />
+                {/* <MdOutlineUploadFile /> */}
+               <p> UPLOADED</p>
                 </button>
                 <button className="btn ml-2 delete">
                   <ImBin2 />
