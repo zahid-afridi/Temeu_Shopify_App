@@ -7,7 +7,7 @@
 .mian-h {
   font-weight: 700 !important;
   /* font-size: 60px; */
-  color: #fb7701;
+  color: #f79917;
 }
 
 .main-box{
@@ -64,9 +64,9 @@ button {
     cursor: pointer;
     text-transform: uppercase;
     background-color: #fff;
-    border: 1px solid #fb7701;
+    border: 1px solid #f79917;
     border-radius: 10px;
-    color: #fb7701;
+    color: #f79917;
     font-weight: 400;
     font-family: inherit;
     z-index: 0;
@@ -75,7 +75,7 @@ button {
 }
 
   button span {
-    color: #fb7701;
+    color: #f79917;
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.7px;
@@ -160,7 +160,7 @@ button {
     margin: 20px 0 0 0px;
     height: 40px;
     border-radius: 100px !important;
-    background: #fb7701 !important;
+    background: #f79917 !important;
   }
   
   .btn-shine span {
@@ -219,7 +219,7 @@ button {
 }
 
 .form-control:focus {
-  border-color: #fb7701 !important;
+  border-color: #f79917 !important;
 }
 
 table.dataTable.display tbody tr:hover>.sorting_1, table.dataTable.order-column.hover tbody tr:hover>.sorting_1 {
@@ -243,7 +243,7 @@ thead th {
 }
 
 .borderorange{
-  border: 1px solid  #fb7701;
+  border: 1px solid  #f79917;
 }
 
 tbody td {
@@ -260,7 +260,7 @@ tbody td {
 }
 
 .view svg {
-  color: #ff9231;
+  color: #f79917;
 }
 .dataTables_info, .dataTables_length{
   display: none;

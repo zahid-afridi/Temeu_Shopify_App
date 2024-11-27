@@ -72,7 +72,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);}
   margin: 0 30px;
   padding: 30px 0 45px 0;
   width: auto;
-  background: #015351;
+  background: #e52f20;
 }
 
 .pricing-table .ptable-header::before,
@@ -96,7 +96,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);}
 }
 
 .pricing-table .ptable-item.featured-item .ptable-header {
-  background: #F9933B;
+  background: #f79917;
 }
 
 .pricing-table .ptable-status {
@@ -110,11 +110,11 @@ border: 1px solid rgba(255, 255, 255, 0.3);}
   height: 30px;
   padding: 5px 0;
   text-align: center;
-  color: #F9933B;
+  color: #f79917;
   font-size: 14px;
   font-weight: 300;
   letter-spacing: 1px;
-  background: #015351;
+  background: #e52f20;
 }
 
 .pricing-table .ptable-status span::before,
@@ -124,7 +124,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);}
   bottom: 0;
   width: 0;
   height: 0;
-  border-bottom: 10px solid #F9933B;
+  border-bottom: 10px solid #f79917;
 }
 
 .pricing-table .ptable-status span::before {
@@ -177,7 +177,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);}
 }
 
 .pricing-table .ptable-description ul li {
-  color: #015351;
+  color: #e52f20;
   font-size: 14px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -196,27 +196,27 @@ border: 1px solid rgba(255, 255, 255, 0.3);}
 .pricing-table .ptable-action a {
   display: inline-block;
   padding: 10px 20px;
-  color: #F9933B;
+  color: #f79917;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 2px;
   text-decoration: none;
-  background: #015351;
+  background: #e52f20;
 }
 
 .pricing-table .ptable-action a:hover {
-  color: #015351;
-  background: #F9933B;
+  color: #e52f20;
+  background: #f79917;
 }
 
 .pricing-table .ptable-item.featured-item .ptable-action a {
-  color: #015351;
-  background: #F9933B;
+  color: #e52f20;
+  background: #f79917;
 }
 
 .pricing-table .ptable-item.featured-item .ptable-action a:hover {
-  color: #F9933B;
-  background: #015351;
+  color: #f79917;
+  background: #e52f20;
 }
 
 
