@@ -1,11 +1,23 @@
+import { legacy_createStore as createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import {thunk} from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // Defaults to localStorage for web
+import reducer from "./reducer";
 
-import { thunk } from 'redux-thunk';
+// Configure Redux Persist
+const persistConfig = {
+  key: "root", // Key for the persisted state
+  storage,     // Storage method (localStorage in this case)
+};
 
-import {composeWithDevTools} from 'redux-devtools-extension';
-import {legacy_createStore as createStore, applyMiddleware} from 'redux';
-import reducer from './reducer';
+const persistedReducer = persistReducer(persistConfig, reducer);
 
+// Enhance store with middleware
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk));
 
-export const store = createStore(reducer, composedEnhancer);
+// Create store with persisted reducer
+export const store = createStore(persistedReducer, composedEnhancer);
 
+// Create the persistor
+export const persistor = persistStore(store);
