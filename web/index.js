@@ -9,6 +9,7 @@ import productCreator from "./product-creator.js";
 import PrivacyWebhookHandlers from "./privacy.js";
 import StoreModel from "./models/Store.js";
 import DbCon from "./db/db.js";
+import Aliexpress_importer_Routes from "./routes/AliExpress_importer.js";
 
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
@@ -42,7 +43,7 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
 
-
+app.use('/api',Aliexpress_importer_Routes)
 // shopify store api
 app.get('/api/store/info', async (req, res) => {
   try {

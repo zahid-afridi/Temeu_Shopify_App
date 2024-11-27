@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema({
         
     },
     
-    productAsin: {
+    itme_Id: {
         type: String
     },
     product_url: {

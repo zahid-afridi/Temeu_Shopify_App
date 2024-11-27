@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "80c01f7c1ffa0f2a36b49bb87c30e143"
-application_url = "https://rage-naturals-mm-continental.trycloudflare.com"
+application_url = "https://mas-choosing-consists-gl.trycloudflare.com"
 embedded = true
 name = "aliexpress"
 handle = "aliexpress-41"
@@ -20,9 +20,9 @@ scopes = "read_content,read_locales,read_products,read_script_tags,read_themes,w
 
 [auth]
 redirect_urls = [
-  "https://rage-naturals-mm-continental.trycloudflare.com/auth/callback",
-  "https://rage-naturals-mm-continental.trycloudflare.com/auth/shopify/callback",
-  "https://rage-naturals-mm-continental.trycloudflare.com/api/auth/callback"
+  "https://mas-choosing-consists-gl.trycloudflare.com/auth/callback",
+  "https://mas-choosing-consists-gl.trycloudflare.com/auth/shopify/callback",
+  "https://mas-choosing-consists-gl.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
