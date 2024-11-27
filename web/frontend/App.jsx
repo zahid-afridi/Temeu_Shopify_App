@@ -20,7 +20,7 @@ export default function App() {
       const response = await fetch('/api/store/info');
       const data = await response.json();
       console.log('Store Information',data)
-      dispatch({ type: 'SET_STORE_INFO', payload: data });
+      dispatch({ type: 'STORE_INFO', payload: data });
     } catch (error) {
       console.error('Error fetching store information:', error);
     }

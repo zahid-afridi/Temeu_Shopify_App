@@ -1,9 +1,12 @@
 // PricingTable.jsx
 import React from "react";
 import "../assets/css/pricing.css";
+import { useSelector } from "react-redux";
 import { Container } from "react-bootstrap";  // Corrected import syntax
 
 const PricingTable = () => {
+  const storeDetail = useSelector((state) => state.StoreDeatil);
+  console.log('storeDeatil',storeDetail)
   return (
     <Container className="p-2 pt-5">
       <h1 className="h2 text-center">PRICING</h1>
