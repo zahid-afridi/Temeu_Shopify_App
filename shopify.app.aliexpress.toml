@@ -1,10 +1,10 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "00b14ae969eb2f9ee24e06d6447ce057"
-application_url = "https://consensus-activated-arabic-substitute.trycloudflare.com"
+client_id = "80c01f7c1ffa0f2a36b49bb87c30e143"
+application_url = "https://parental-requesting-publicity-tubes.trycloudflare.com"
 embedded = true
-name = "temu_app"
-handle = "temu_app"
+name = "aliexpress"
+handle = "aliexpress-41"
 
 [build]
 include_config_on_deploy = true
@@ -18,12 +18,11 @@ api_version = "2024-10"
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "read_content,read_locales,read_products,read_script_tags,read_themes,write_content,write_locales,write_products,write_script_tags,write_themes"
 
-
 [auth]
 redirect_urls = [
-  "https://consensus-activated-arabic-substitute.trycloudflare.com/auth/callback",
-  "https://consensus-activated-arabic-substitute.trycloudflare.com/auth/shopify/callback",
-  "https://consensus-activated-arabic-substitute.trycloudflare.com/api/auth/callback"
+  "https://parental-requesting-publicity-tubes.trycloudflare.com/auth/callback",
+  "https://parental-requesting-publicity-tubes.trycloudflare.com/auth/shopify/callback",
+  "https://parental-requesting-publicity-tubes.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

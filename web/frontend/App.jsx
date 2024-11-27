@@ -4,8 +4,27 @@ import { NavMenu } from "@shopify/app-bridge-react";
 import Routes from "./Routes";
 
 import { QueryProvider, PolarisProvider } from "./components";
+import { useDispatch } from "react-redux";
+
+import { useEffect } from "react";
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    GetStoreInfo()
+
+  },[])
+  const GetStoreInfo=async()=>{
+    try {
+      const response = await fetch('/api/store/info');
+      const data = await response.json();
+      console.log('Store Information',data)
+      dispatch({ type: 'SET_STORE_INFO', payload: data });
+    } catch (error) {
+      console.error('Error fetching store information:', error);
+    }
+  }
   // Any .tsx or .jsx files in /pages will become a route
   // See documentation for <Routes /> for more info
   const pages = import.meta.glob("./pages/**/!(*.test.[jt]sx)*.([jt]sx)", {
@@ -15,7 +34,7 @@ export default function App() {
 
   return (
     <PolarisProvider>
-      <BrowserRouter>
+     
         <QueryProvider>
           <NavMenu>
           <a href="/" rel="home" />
@@ -23,7 +42,7 @@ export default function App() {
           </NavMenu>
           <Routes pages={pages} />
         </QueryProvider>
-      </BrowserRouter>
+     
     </PolarisProvider>
   );
 }

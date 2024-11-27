@@ -7,6 +7,8 @@ import serveStatic from "serve-static";
 import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
 import PrivacyWebhookHandlers from "./privacy.js";
+import StoreModel from "./models/Store.js";
+import DbCon from "./db/db.js";
 
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
@@ -19,7 +21,8 @@ const STATIC_PATH =
     : `${process.cwd()}/frontend/`;
 
 const app = express();
-
+// database connecrion 
+DbCon()
 // Set up Shopify authentication and webhook handling
 app.get(shopify.config.auth.path, shopify.auth.begin());
 app.get(
@@ -39,34 +42,46 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
 
-app.get("/api/products/count", async (_req, res) => {
-  const client = new shopify.api.clients.Graphql({
-    session: res.locals.shopify.session,
-  });
 
-  const countData = await client.request(`
-    query shopifyProductCount {
-      productsCount {
-        count
-      }
-    }
-  `);
-
-  res.status(200).send({ count: countData.data.productsCount.count });
-});
-
-app.post("/api/products", async (_req, res) => {
-  let status = 200;
-  let error = null;
-
+// shopify store api
+app.get('/api/store/info', async (req, res) => {
   try {
-    await productCreator(res.locals.shopify.session);
-  } catch (e) {
-    console.log(`Failed to process products/create: ${e.message}`);
-    status = 500;
-    error = e.message;
+    const Store = await shopify.api.rest.Shop.all({
+      session: res.locals.shopify.session,
+    });
+    // console.log("Storename",Store.data[0].domain)
+      // console.log('Store Information',Store)
+    if (Store && Store.data && Store.data.length > 0) {
+      const storeName = Store.data[0].name;
+      const domain = Store.data[0].domain;
+      const country=Store.data[0].country;
+      const Store_Id=Store.data[0].id
+     
+
+      // Check if storeName exists in the database
+      let existingStore = await StoreModel.findOne({ storeName });
+
+      if (!existingStore) {
+        // If it doesn't exist, save it
+        const newStore = new StoreModel({ storeName,domain,country,Store_Id });
+        await newStore.save();
+      //  await BillingModel.create({
+      //     store_id:Store_Id,
+      //     ebayProductNumber:10,
+      //     csvProductNumber:10
+      //   })
+      existingStore = newStore;
+      }
+
+      // Send response with existingStore only
+      res.status(200).json(existingStore); // Send existingStore directly in the response
+    } else {
+      res.status(404).json({ message: 'Store not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server Error" });
   }
-  res.status(status).send({ success: status === 200, error });
 });
 
 app.use(shopify.cspHeaders());
