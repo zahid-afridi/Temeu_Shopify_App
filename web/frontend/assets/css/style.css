@@ -317,6 +317,18 @@ display: none !important;
   overflow: hidden;
 }
 
+.alertproduct{
+  max-width: 20rem !important;
+  min-width: 10rem !important;
+  margin: auto !important;
+  text-align: center !important;
+  margin-bottom: -1.1rem !important;
+  gap: 7px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modalcontainer{
   height: 100%;
 }

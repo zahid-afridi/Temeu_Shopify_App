@@ -1,38 +1,45 @@
 import React, { useState } from "react";
 
-import { Container } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 import Table from "./components/table.jsx";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { CgDanger } from "react-icons/cg";
+
 
 export default function index() {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
   const [isFetching, setIsFetching] = useState(false); // Added state for API fetching status
   const storeDetail = useSelector((state) => state.StoreDeatil);
   const [refresh, setRefresh] = useState(false);
 
   const ImportProduct = async () => {
     if (!url) {
-      toast.error('Please enter a valid URL.');
+      toast.error("Please enter a valid URL.");
       return;
     }
     try {
       setIsFetching(true); // Set fetching to true when API call starts
-      const res = await fetch(`/api/aliexpress_importer?url=${url.trim()}&Shop_id=${storeDetail.Store_Id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const res = await fetch(
+        `/api/aliexpress_importer?url=${url.trim()}&Shop_id=${
+          storeDetail.Store_Id
+        }`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
-      console.log('data', data);
+      console.log("data", data);
       if (res.ok) {
         toast.success(data.message);
         setRefresh((prev) => !prev);
-        setUrl('');
+        setUrl("");
       }
     } catch (error) {
-      console.log('erer', error);
+      console.log("erer", error);
     } finally {
       setIsFetching(false); // Reset fetching status after API call ends
     }
@@ -40,6 +47,10 @@ export default function index() {
 
   return (
     <>
+      <Alert className="alertproduct container mt-4" variant="warning">
+      <CgDanger />
+        You have 99999999999 Products left!
+      </Alert>
       <div className="d-flex align-items-center mt-5">
         <Container className="input-container">
           <div className="bg-white inputbox rounded-pill borderorange">
@@ -66,7 +77,8 @@ export default function index() {
                 className="btn-shine"
                 disabled={isFetching} // Disable button when fetching
               >
-                <span>{isFetching ? 'Importing...' : 'IMPORT NOW'}</span> {/* Dynamic text */}
+                <span>{isFetching ? "Importing..." : "IMPORT NOW"}</span>{" "}
+                {/* Dynamic text */}
               </button>
             </div>
           </div>
