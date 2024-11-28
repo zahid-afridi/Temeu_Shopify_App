@@ -242,6 +242,10 @@ thead th {
   text-align: center;
 }
 
+.price{
+  width: 7rem;
+}
+
 .borderorange{
   border: 1px solid  #f79917;
 }
@@ -260,7 +264,7 @@ tbody td {
   cursor: no-drop;
 }
 .edit p{
-  font-size: 0.8rem;
+  /* font-size: 0.8rem; */
  cursor: no-drop;
 }
 
@@ -271,6 +275,15 @@ tbody td {
 .view svg {
   color: #f79917;
 }
+
+.crudicon{
+  cursor: pointer;
+  gap: 1.4rem;
+}
+  .crudicon svg{
+    font-size: 1.4rem;
+  }
+
 .dataTables_info, .dataTables_length{
   display: none;
 }

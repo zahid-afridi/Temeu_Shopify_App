@@ -120,14 +120,19 @@ const handleDelte=async(item)=>{
       </td>
       <td>{item.title}</td>
       <td>
-        <p>{`$${item.price}`}</p>
+        <p className="price">{`$${item.price}`}</p>
       </td>
       <td>
-        <div className="d-flex gap-2">
+        <div className="d-flex crudicon">
+      <div className="d-flex gap-2 edit">
             <MdOutlineUploadFile onClick={()=>handleUploade(item)} />
-            <ImBin2  onClick={()=>handleDelte(item)}/>
-            <FaRegEye onClick={()=>handleClick(item)} />
         </div>
+        <div className="d-flex gap-2 delete">
+            <ImBin2  onClick={()=>handleDelte(item)}/>
+        </div>
+        <div className="d-flex gap-2 view">
+            <FaRegEye onClick={()=>handleClick(item)} />
+        </div></div>
       </td>
     </tr>
     )
