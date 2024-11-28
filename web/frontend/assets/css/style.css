@@ -304,3 +304,28 @@ display: none !important;
 .modalcontainer{
   height: 100%;
 }
+
+/* custom table */
+.table-info-ba{
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 12px;
+}
+.table-info-ba thead tr th{
+  background-color: rgba(255, 255, 255, 1);
+    padding: 12px 35px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+.table-info-ba tbody td{
+  padding: 18px 30px;
+  text-align: left;
+  font-size: 14px;
+  color: #5a5a5a
+}
+.table-info-ba .tableimg{ 
+  width: 40px;
+  border-radius: 10px;
+}

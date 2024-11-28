@@ -45,7 +45,7 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 app.use(express.json());
 
 app.use('/api',Aliexpress_importer_Routes)
-app.use('/api/product',ProductRoutes)
+app.use('/api/products',ProductRoutes)
 // shopify store api
 app.get('/api/store/info', async (req, res) => {
   try {

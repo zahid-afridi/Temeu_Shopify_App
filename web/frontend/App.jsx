@@ -1,4 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
+import './assets/css/style.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useTranslation } from "react-i18next";
 import { NavMenu } from "@shopify/app-bridge-react";
 import Routes from "./Routes";

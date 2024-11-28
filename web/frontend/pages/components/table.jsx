@@ -1,88 +1,141 @@
 import React, { useEffect, useState } from "react";
 import "../../assets/css/style.css";
-import Table from "react-bootstrap/Table";
 import tableimg from "../../assets/img/tableimg.jpg";
 import { ImBin2 } from "react-icons/im";
 import { FaRegEye } from "react-icons/fa";
 import { MdOutlineUploadFile } from "react-icons/md";
 import Modal from "./modal.jsx";
+import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+import toast from "react-hot-toast";
 
-const DataTableComponent = () => {
 
- const [show, setShow] = useState(false)
-  useEffect(() => {
-    // Initialize DataTable after the component is mounted
-    const table = $("#myTable").DataTable();
+const DataTableComponent = ({refresh,setRefresh}) => {
+  const storeDetail = useSelector((state) => state.StoreDeatil);
+  const [products,setProducts]=useState([])
+  const [show, setShow] = useState(false)
 
-    // Clean up DataTable when the component is unmounted
-    return () => {
-      table.destroy();
-    };
-  }, []); // Empty dependency arra  y ensures this runs once after initial render
+useEffect(() => {
+  GetProducts()
+}, [refresh]);
+const GetProducts=async(req,res)=>{
+  try {
+    const response = await fetch(
+      `/api/products/getProduct?shop_id=${storeDetail.Store_Id}`
+    );
+    const data = await response.json();
+    console.log("fetchProduct", data);
+    if (response.ok) {
+      setProducts(data.products)
+    }
+  } catch (error) {
+    console.log('Product Eroor',error)
+  }
+}
+const handleClick=(item)=>{
+  window.open(item.product_url, '_blank');
+}
+const handleUploade=async(item)=>{
+  try {
+    const response = await fetch("/api/products/upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Specify JSON format
+      },
+      body: JSON.stringify({
+        title: item.title,  
+        description: item.description ?  item.description :"No Description" ,
+        image_url: item.image_url,
+        ProductId: item._id,
+        price: item.price,
+      }),
+    });
 
+    const res = await response.json();
+    console.log("upload", res);
+    if (response.ok) {
+    
+      toast.success(res.message)
+      setRefresh((prev)=>!prev)
+      
+    } else {
+     
+      toast.error(res.message);
+    }
+  } catch (error) {
+   
+    console.log("upload error:===>", error);
+  }
+}
+
+const handleDelte=async(item)=>{
+  try {
+   
+    const response = await fetch("/api/products/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        shopifyId: item.shopifyId,
+        productId: item._id,
+      }),
+    });
+    const res = await response.json();
+    console.log(res);
+    if (response.ok) {
+      toast.success(res.message);
+      setRefresh((prev)=>!prev)
+
+     
+    } else {
+    
+      toast.success(res.message);
+    }
+  } catch (error) {
+   
+    console.log("upload error:===>", error);
+  }
+}
   return (
     <>
     <Modal show={show} onClose={() => setShow (false)}/>
+    
+<table class="table table-hover table-info-ba">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   {products && products.map((item)=>{
+    return(
+      <tr>
+      <td>
+        <img  className="tableimg"
+        src={item.mainImage} alt="" />
+      </td>
+      <td>{item.title}</td>
+      <td>
+        <p>{`$${item.price}`}</p>
+      </td>
+      <td>
+        <div className="d-flex gap-2">
+            <MdOutlineUploadFile onClick={()=>handleUploade(item)} />
+            <ImBin2  onClick={()=>handleDelte(item)}/>
+            <FaRegEye onClick={()=>handleClick(item)} />
+        </div>
+      </td>
+    </tr>
+    )
+   })}
+  
+  </tbody>
+</table>
 
-      <Table id="myTable" className="display w-100">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="tableimg">
-              <img src={tableimg} className="table-logo" alt="" />
-            </td>
-            <td className="tabletitle text-start">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </td>
-            <td className="tableprice">40$</td>
-            <td className="tableaction">
-              <div className="d-flex justify-content-evenly">
-                <button className="btn edit">
-                <MdOutlineUploadFile />
-
-                </button>
-                <button className="btn ml-2 delete">
-                  <ImBin2 />
-                </button>
-                <button className="btn ml-2 view">
-                  <FaRegEye />
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td className="tableimg">
-              <img src={tableimg} className="table-logo" alt="" />
-            </td>
-            <td className="tabletitle text-start">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </td>
-            <td className="tableprice">40$</td>
-            <td className="tableaction">
-              <div className="d-flex justify-content-evenly">
-                <button className="btn edit">
-                {/* <MdOutlineUploadFile /> */}
-               <p> UPLOADED</p>
-                </button>
-                <button className="btn ml-2 delete">
-                  <ImBin2 />
-                </button>
-                <Button className="btn ml-2 view bg-white border-0" variant="primary" onClick={() => setShow(true)}>
-                  <FaRegEye />
-                </Button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
     </>
   );
 };

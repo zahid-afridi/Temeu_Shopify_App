@@ -35,14 +35,18 @@ export const Importer_Product = async (req, res) => {
       // Check if data and item exist before accessing the properties
       if (data && data.item) {
         const item = data.item;
-        console.log('Product data:', item);
+        // console.log('Product data:', item);
 
+        const filteredImages = item.images
+    .filter(image => image.startsWith("//")) // Ensures it starts with "//"
+    .map(image => `https:${image}`);   
+    const textDescription = item?.description.html.replace(/<[^>]*>/g, "").trim();
         // Insert product into the database
         await ProductModel.create({
           title: item.title || 'No title available',  // Added fallback value
-          description: item?.description.html ||  'no description',
+          description: textDescription ||  'no description',
           price: item.sku?.def?.price || 'N/A',  // Added fallback for price
-          image_url: item.images || [],
+          image_url: filteredImages || [],
           shop_id: Shop_id,
           itme_Id: item.itemId,
           product_url:item.itemUrl || 'No URL available',  // Added fallback for product URL

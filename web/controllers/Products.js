@@ -1,10 +1,11 @@
 import ProductModel from "../models/Products.js";
+import shopify from "../shopify.js";
 
 
 export const GetProducts=async(req,res)=>{
     try {
         const { shop_id } = req.query;
-    
+    console.log('shop_id',shop_id)
         // Check if shop_id exists
         if (!shop_id) {
           return res.status(400).json({
@@ -18,6 +19,7 @@ export const GetProducts=async(req,res)=>{
     
         // Query the product model
         const products = await ProductModel.find({ shop_id });
+        console.log('product',products)
         // console.log('products',products)
         // Check if any products were found
         if (!products.length) {
@@ -79,7 +81,7 @@ export const DelteProducts=async(req,res)=>{
 
 export const UploadeProduct=async(req,res)=>{
     const { title, description, image_url, ProductId, price } = req.body;
-
+      console.log('images',image_url)
     if (!title || !description || !image_url || !ProductId || !price) {
       res.status(200).json({
         status: 200,
@@ -111,6 +113,7 @@ export const UploadeProduct=async(req,res)=>{
       (newProduct.title = title),
         (newProduct.body_html = description),
         (newProduct.images = image_url.map((url) => ({ src: url })));
+
       newProduct.variants = [
         {
           option1: "First",
@@ -131,7 +134,7 @@ export const UploadeProduct=async(req,res)=>{
       await newProduct.save({
         update: true,
       });
-      console.log('new product uplodaed',newProduct)
+      // console.log('new product uplodaed',newProduct)
       const DatabesProduct = await ProductModel.findById({ _id: ProductId });
       if (!DatabesProduct) {
         res.status(404).json({ success: false, message: "Prodcut not Found" });
@@ -139,10 +142,10 @@ export const UploadeProduct=async(req,res)=>{
       DatabesProduct.shopifyId = newProduct.id;
       DatabesProduct.inShopify = true;
       await DatabesProduct.save();
-      console.log("this is new Product Id", newProduct.id);
+      // console.log("this is new Product Id", newProduct.id);
       // console.log('databaseProduc',DatabesProduct)
-      console.log("Database product Id", ProductId);
-      console.log("product price is comming", price);
+      // console.log("Database product Id", ProductId);
+      // console.log("product price is comming", price);
   
       // Send a success response
       res
