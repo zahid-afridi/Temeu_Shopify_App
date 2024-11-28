@@ -53,9 +53,11 @@
 }
 
 .box1 {
-  border: 1px dashed orange;
+  border: 4px dashed orange;
   overflow: hidden;
   height: 95%;
+  height: 23rem;
+    margin-left: 18px !important;
 }
 
 .box>.row>.col{
@@ -63,10 +65,15 @@ width: 23rem;
 justify-content: center;
 border-radius: 30px !important;
 margin-bottom: -.2rem !important;
+margin-left: 24px !important;
 }
 
 .btn:hover {
   border: 0;
+}
+
+.row{
+  align-content: center;
 }
 
 .uploadicon {
