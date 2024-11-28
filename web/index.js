@@ -11,6 +11,7 @@ import StoreModel from "./models/Store.js";
 import DbCon from "./db/db.js";
 import Aliexpress_importer_Routes from "./routes/AliExpress_importer.js";
 import ProductRoutes from "./routes/Product.js";
+import BillingModel from "./models/Billing.js";
 
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
@@ -68,11 +69,11 @@ app.get('/api/store/info', async (req, res) => {
         // If it doesn't exist, save it
         const newStore = new StoreModel({ storeName,domain,country,Store_Id });
         await newStore.save();
-      //  await BillingModel.create({
-      //     store_id:Store_Id,
-      //     ebayProductNumber:10,
-      //     csvProductNumber:10
-      //   })
+       await BillingModel.create({
+          store_id:Store_Id,
+          ebayProductNumber:10,
+          csvProductNumber:10
+        })
       existingStore = newStore;
       }
 

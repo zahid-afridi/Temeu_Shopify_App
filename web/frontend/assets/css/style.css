@@ -261,7 +261,7 @@ tbody td {
 }
 .edit{
   animation: none;
-  cursor: no-drop;
+  cursor: pointer;
 }
 .edit p{
   /* font-size: 0.8rem; */
