@@ -9,6 +9,7 @@ import { QueryProvider, PolarisProvider } from "./components";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
+import Spinner from "./components/Spinner";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -38,11 +39,7 @@ export default function App() {
   const { t } = useTranslation();
  if (loading) {
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
-          <div className="spinner-border text-primary" style={{ width: "3rem", height: "3rem" }} role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
+   <Spinner/>
   )
  }
   return (
