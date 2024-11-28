@@ -275,6 +275,9 @@ tbody td {
 .view svg {
   color: #f79917;
 }
+.crudicon span{
+  margin-left: -40px;
+}
 
 .crudicon{
   cursor: pointer;
