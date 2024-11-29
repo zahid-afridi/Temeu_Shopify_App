@@ -12,6 +12,8 @@ import DbCon from "./db/db.js";
 import Aliexpress_importer_Routes from "./routes/AliExpress_importer.js";
 import ProductRoutes from "./routes/Product.js";
 import BillingModel from "./models/Billing.js";
+import Csvroutes from "./routes/CsvUpload.js";
+import BillingRoute from "./routes/Billing.js";
 
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
@@ -47,6 +49,10 @@ app.use(express.json());
 
 app.use('/api',Aliexpress_importer_Routes)
 app.use('/api/products',ProductRoutes)
+app.use('/api/upload',Csvroutes)
+app.use('/api/billing',BillingRoute)
+
+
 // shopify store api
 app.get('/api/store/info', async (req, res) => {
   try {

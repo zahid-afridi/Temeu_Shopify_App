@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "80c01f7c1ffa0f2a36b49bb87c30e143"
-application_url = "https://generation-different-tmp-universities.trycloudflare.com"
+application_url = "https://portal-pixel-parish-perl.trycloudflare.com"
 embedded = true
 name = "aliexpress"
 handle = "aliexpress-41"
@@ -20,9 +20,9 @@ scopes = "read_content,read_locales,read_products,read_script_tags,read_themes,w
 
 [auth]
 redirect_urls = [
-  "https://generation-different-tmp-universities.trycloudflare.com/auth/callback",
-  "https://generation-different-tmp-universities.trycloudflare.com/auth/shopify/callback",
-  "https://generation-different-tmp-universities.trycloudflare.com/api/auth/callback"
+  "https://portal-pixel-parish-perl.trycloudflare.com/auth/callback",
+  "https://portal-pixel-parish-perl.trycloudflare.com/auth/shopify/callback",
+  "https://portal-pixel-parish-perl.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
