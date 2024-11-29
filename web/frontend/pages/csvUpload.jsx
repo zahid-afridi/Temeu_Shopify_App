@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import csvtojson from "csvtojson";
 import { useSelector } from "react-redux";
 import { CgDanger } from "react-icons/cg";
+import Spinner from "../components/Spinner";
 
 export default function CsvUpload() {
   const [file, setFile] = useState(null);
@@ -16,20 +17,28 @@ export default function CsvUpload() {
   const storeDetail = useSelector((state) => state.StoreDeatil);
   const [refresh, setRefresh] = useState(false);
   const [storeBilling, setStoreBilling] = useState({});
+  const [loading,setLoading]=useState(true)
 
 
-
+useEffect(()=>{
+if (storeBilling) {
+  setLoading(false)
+}
+},[storeBilling])
   useEffect(() => {
     const getBilling = async () => {
       if (storeDetail?.Store_Id) {
         try {
+          setLoading(true)
           const response = await fetch(
             `/api/billing/getBilling?StoreId=${storeDetail.Store_Id}`
           );
           const data = await response.json();
-          console.log("paymethome", data.StorePayment);
+          // console.log("paymethome", data.StorePayment);
           setStoreBilling(data.StorePayment);
+          setLoading(false)
         } catch (error) {
+          setLoading(false)
           console.error("Error fetching billing data:", error);
         }
       }
@@ -123,11 +132,20 @@ export default function CsvUpload() {
     }
   };
 
+  if (loading) {
+    return <Spinner></Spinner>
+  } else if (!storeBilling?.csvProductNumber) {
+    return <h1>upgrade</h1>
+  }
+
   return (
+
     <>
       <Alert className="alertproduct container mt-4" variant="warning">
       <CgDanger />
-        You have 99999999999 Products left!
+      {`You have ${storeBilling.csvProductNumber} Products left!`}
+
+        
       </Alert>
       <Container>
         <div className="box align-middle d-flex borderorange shadow p-3 mt-5 bg-body-tertiary rounded">

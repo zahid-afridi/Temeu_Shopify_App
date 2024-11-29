@@ -23,6 +23,14 @@ const BillingShecma= new mongoose.Schema({
     csvProductNumber:{
         type:Number,
         default: 0
+    },
+    upcomingProductNumber:{
+        type:Number,
+        default:0
+    },
+    upcomingcsvProductNumber:{
+        type:Number,
+        default:0
     }
 },{timestamps:String})
 

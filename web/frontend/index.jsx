@@ -13,12 +13,13 @@ import { PersistGate } from "redux-persist/integration/react";
 initI18n().then(() => {
   const root = createRoot(document.getElementById("app"));
   root.render(
+    
     <Provider store={store}>
   <PersistGate loading={null} persistor={persistor}>
     <BrowserRouter>
     <Toaster/>
       <PolarisProvider>
-
+        {console.log('hello from  hommmmmm')}
   <App />
   </PolarisProvider>
     </BrowserRouter>

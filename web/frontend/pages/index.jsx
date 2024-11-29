@@ -22,7 +22,7 @@ export default function Index() {
             `/api/billing/getBilling?StoreId=${storeDetail.Store_Id}`
           );
           const data = await response.json();
-          console.log("paymethome", data.StorePayment);
+          // console.log("paymethome", data.StorePayment);
           setStoreBilling(data.StorePayment);
         } catch (error) {
           console.error("Error fetching billing data:", error);

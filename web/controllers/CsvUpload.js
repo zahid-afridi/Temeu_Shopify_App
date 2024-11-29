@@ -1,5 +1,6 @@
 import axios from "axios";
 import ProductModel from "../models/Products.js";
+import BillingModel from "../models/Billing.js";
 
 const CsvProductimport = async (req, res) => {
   const { asin } = req.body;
@@ -43,6 +44,12 @@ const CsvProductimport = async (req, res) => {
       });
 
       await ProductModel.create(newProduct);
+     
+      await BillingModel.findOneAndUpdate(
+         { store_id: Shop_id, csvProductNumber: { $gt: 0 } },
+         { $inc: { csvProductNumber: -1 } },
+         { new: true }
+      )
       return res.status(200).json({ success: true, message: `Product with ID ${asin} fetched and saved successfully` });
     } else {
       return res.status(404).json({
