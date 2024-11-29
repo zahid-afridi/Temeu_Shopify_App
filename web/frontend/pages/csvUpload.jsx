@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/css/style.css";
 import "../assets/css/csv.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,7 +14,33 @@ export default function CsvUpload() {
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false); // State to track if the upload is in progress
   const storeDetail = useSelector((state) => state.StoreDeatil);
+  const [refresh, setRefresh] = useState(false);
+  const [storeBilling, setStoreBilling] = useState({});
 
+
+
+  useEffect(() => {
+    const getBilling = async () => {
+      if (storeDetail?.Store_Id) {
+        try {
+          const response = await fetch(
+            `/api/billing/getBilling?StoreId=${storeDetail.Store_Id}`
+          );
+          const data = await response.json();
+          console.log("paymethome", data.StorePayment);
+          setStoreBilling(data.StorePayment);
+        } catch (error) {
+          console.error("Error fetching billing data:", error);
+        }
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      getBilling();
+    }, 500); // Delay of 500ms to ensure StoreDetail is loaded
+
+    return () => clearTimeout(timeout);
+  }, [storeDetail.Store_Id, refresh]);
   // Handle file selection
   const handleFileChange = (e) => {
     const file = e.target.files[0];

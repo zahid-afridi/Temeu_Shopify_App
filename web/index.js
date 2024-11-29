@@ -77,7 +77,7 @@ app.get('/api/store/info', async (req, res) => {
         await newStore.save();
        await BillingModel.create({
           store_id:Store_Id,
-          ebayProductNumber:10,
+          aliexProductNumber:10,
           csvProductNumber:10
         })
       existingStore = newStore;
