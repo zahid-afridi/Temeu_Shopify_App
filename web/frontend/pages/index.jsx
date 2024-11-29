@@ -115,11 +115,12 @@ export default function Index() {
           </div>
         </>
       ) : (
-        <div className="d-flex flex-column align-items-center mt-5">
-          <Badge bg="danger" className="p-3 mb-3">
-            You have reached your limit. Please upgrade.
-          </Badge>
-          <Button variant="primary" onClick={handleNavigate}>
+        <div className="d-flex m-auto align-items-center flex-wrap mt-5 area-info">
+          <div  className="d-flex flex-column">
+            <h3>You have reached your limit.</h3>
+            <span>Please upgrade.</span> 
+          </div>
+          <Button className="btn-upgrade" onClick={handleNavigate}>
             Upgrade
           </Button>
         </div>
