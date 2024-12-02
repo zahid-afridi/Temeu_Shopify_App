@@ -13,28 +13,29 @@ export default function Index() {
   const [storeBilling, setStoreBilling] = useState({});
   const storeDetail = useSelector((state) => state.StoreDeatil);
   const [refresh, setRefresh] = useState(false);
+  const [payupdate,setPayupdate]=useState(true)
 
   useEffect(() => {
     const getBilling = async () => {
       if (storeDetail?.Store_Id) {
         try {
+          
           const response = await fetch(
             `/api/billing/getBilling?StoreId=${storeDetail.Store_Id}`
           );
           const data = await response.json();
           // console.log("paymethome", data.StorePayment);
           setStoreBilling(data.StorePayment);
+          setPayupdate(false)
         } catch (error) {
+          setPayupdate(false)
+
           console.error("Error fetching billing data:", error);
         }
       }
     };
 
-    const timeout = setTimeout(() => {
-      getBilling();
-    }, 500); // Delay of 500ms to ensure StoreDetail is loaded
-
-    return () => clearTimeout(timeout);
+   getBilling()
   }, [storeDetail.Store_Id, refresh]);
 
   const ImportProduct = async () => {
@@ -75,8 +76,19 @@ export default function Index() {
 
   return (
     <>
-      {storeBilling?.aliexProductNumber > 0 ? (
+      {
+      payupdate ? ( 
+        <div className="text-center mt-1">
+           <div
+        className="spinner-border spinner-border-lg text-danger"
+        role="status"
+      >
+        <span className="visually-hidden">Loading...</span>
+      </div>
+        </div>
+       ) : storeBilling?.aliexProductNumber > 0 ? (
         <>
+        
           <Alert className="alertproduct container mt-4" variant="warning">
             <CgDanger />
             {`You have ${storeBilling.aliexProductNumber} Products left!`}
@@ -115,7 +127,7 @@ export default function Index() {
           </div>
         </>
       ) : (
-        <div className="d-flex m-auto align-items-center flex-wrap mt-5 area-info">
+        <div className="d-flex m-auto align-items-center flex-wrap mt-3 area-info">
           <div  className="d-flex flex-column">
             <h3>You have reached your limit.</h3>
             <span>Please upgrade.</span> 
@@ -125,8 +137,11 @@ export default function Index() {
           </Button>
         </div>
       )}
-      <div className="d-flex align-items-center mt-5">
+      <div className="d-flex align-items-center mt-3">
         <Container>
+          <div className="float-end mb-3">
+           <button className="btn-shine btn-shine2" onClick={()=>navigate('/csvUpload')}><span>Upload CSV</span></button>
+          </div>
           <Table refresh={refresh} setRefresh={setRefresh} />
         </Container>
       </div>

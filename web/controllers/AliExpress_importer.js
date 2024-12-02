@@ -1,5 +1,6 @@
 import axios from "axios";
 import ProductModel from "../models/Products.js";
+import BillingModel from "../models/Billing.js";
 
 export const Importer_Product = async (req, res) => {
   try {
@@ -52,7 +53,16 @@ export const Importer_Product = async (req, res) => {
           product_url:item.itemUrl || 'No URL available',  // Added fallback for product URL
           mainImage: item.images[0] || 'No image available',  // Added fallback for main image
         });
-
+        await BillingModel.findOneAndUpdate(
+          {
+            store_id: Shop_id,
+            aliexProductNumber: { $gt: 0 }, // Ensure value is greater than 0
+          },
+          {
+            $inc: { aliexProductNumber: -1 },
+          }
+        );
+        
         // Return the product data as a response
         return res.status(200).json({
           success: true,

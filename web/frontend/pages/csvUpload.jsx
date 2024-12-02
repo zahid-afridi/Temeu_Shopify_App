@@ -10,8 +10,12 @@ import csvtojson from "csvtojson";
 import { useSelector } from "react-redux";
 import { CgDanger } from "react-icons/cg";
 import Spinner from "../components/Spinner";
+import crown from "../assets/img/crown.png";
+import { useNavigate } from "react-router-dom";
 
 export default function CsvUpload() {
+  const navigate=useNavigate()
+
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false); // State to track if the upload is in progress
   const storeDetail = useSelector((state) => state.StoreDeatil);
@@ -135,7 +139,17 @@ if (storeBilling) {
   if (loading) {
     return <Spinner></Spinner>
   } else if (!storeBilling?.csvProductNumber) {
-    return <h1>upgrade</h1>
+    return (
+      <div className="d-flex h-100 my-5 align-center-center justify-content-center">
+      <div className="border w-75 text-center bg-white p-3 p-4 rounded-2 shadow-sm">
+         <img src={crown} width={'50px'} alt=""/>
+          <h3 className="my-3 fs-5 fw-bold">Your product limit is over</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid consectetur numquam in veniam voluptatem. 
+            Ab quos modi omnis hic! Asperiores tenetur deserunt repudiandae illo atque mollitia amet, ex laudantium rerum!</p>
+            <Button className="btn-shine" onClick={()=>navigate('/Pricing')}>Upgrade</Button>
+      </div>
+    </div>
+    )
   }
 
   return (
