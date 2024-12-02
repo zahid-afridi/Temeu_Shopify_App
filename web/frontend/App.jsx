@@ -74,6 +74,8 @@ export default function App() {
         <NavMenu>
           <a href="/" rel="home" />
           <a href="/csvUpload">CSV Upload</a>
+          <a href="/blogs">Blogs</a>
+          <a href="/singleblog">Single Blog</a>
           <a href="/Pricing">Pricing</a>
         </NavMenu>
         <Routes pages={pages} />
